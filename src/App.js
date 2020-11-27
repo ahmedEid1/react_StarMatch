@@ -12,7 +12,9 @@ const StarsDisplay = props => (
 
 const PlayNumber = props => (
     <button className="number"
-            style={{background: colors[props.status]}}>
+            style={{background: colors[props.status]}}
+            onClick={() => props.onClick(props.number, props.status)}
+    >
       {props.number}
     </button>
 );
@@ -20,8 +22,8 @@ const PlayNumber = props => (
 
 const StarMatch = () => {
   const [stars, setStars] = useState(utils.random(1, 9));
-  const [candidateNumbers, setCandidateNumbers] = useState([5]);
-  const [availableNumbers, setAvailableNumbers] = useState([1, 2, 5 ]);
+  const [candidateNumbers, setCandidateNumbers] = useState([]);
+  const [availableNumbers, setAvailableNumbers] = useState(utils.range(1, 9));
 
   const candidateWrong = utils.sum(candidateNumbers) > stars;
 
@@ -35,6 +37,32 @@ const StarMatch = () => {
     return 'available'
   };
 
+
+  const onNumberClick = (number, currentStatus) => {
+      if (currentStatus === "used")
+          return ;
+
+      let newCandidateNumbers;
+      if (currentStatus === "available") {
+          newCandidateNumbers  = candidateNumbers.concat(number);
+      } else {
+          newCandidateNumbers = candidateNumbers.filter(x => x !== number);
+      }
+
+      if (utils.sum(newCandidateNumbers) !== stars){
+          setCandidateNumbers(newCandidateNumbers);
+      } else {
+          const newAvailableNumbers = availableNumbers.filter(
+              x => !newCandidateNumbers.includes(x)
+          );
+          setAvailableNumbers(newAvailableNumbers);
+          setCandidateNumbers([]);
+          setStars(utils.randomSumIn(newAvailableNumbers, 9));
+      }
+
+  }
+
+
   return (
       <div className="game">
         <div className="help">
@@ -46,7 +74,12 @@ const StarMatch = () => {
           </div>
           <div className="right">
             {utils.range(1, 9).map(number =>
-                <PlayNumber key={number} number={number} status={numberStatus(number)} />
+                <PlayNumber
+                    key={number}
+                    number={number}
+                    status={numberStatus(number)}
+                    onClick={onNumberClick}
+                />
             )}
 
           </div>
