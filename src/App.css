@@ -62,3 +62,10 @@
   font-weight: bold;
   margin: 15px;
 }
+
+.game-done > button {
+  margin-top: 90px;
+  background: green;
+  color: whitesmoke;
+  font-weight: bold;
+}
