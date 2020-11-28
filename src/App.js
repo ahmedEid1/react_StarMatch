@@ -31,7 +31,7 @@ const PlayAgain = props => (
     </div>
 )
 
-const StarMatch = () => {
+const Game = (props) => {
   const [stars, setStars] = useState(utils.random(1, 9));
   const [candidateNumbers, setCandidateNumbers] = useState([]);
   const [availableNumbers, setAvailableNumbers] = useState(utils.range(1, 9));
@@ -50,12 +50,12 @@ const StarMatch = () => {
   const candidateWrong = utils.sum(candidateNumbers) > stars;
   const gameStatus = availableNumbers.length === 0? "won" : secondsLeft === 0? "lost": "playing"
 
-  const resetGame = () => {
-      setStars(utils.random(1, 9));
-      setAvailableNumbers(utils.range(1, 9));
-      setCandidateNumbers([]);
-      setSecondsLeft()
-  }
+  // const resetGame = () => {
+  //     setStars(utils.random(1, 9));
+  //     setAvailableNumbers(utils.range(1, 9));
+  //     setCandidateNumbers([]);
+  //     setSecondsLeft(10)
+  // }
 
   const numberStatus = (number) => {
     if(!availableNumbers.includes(number)) {
@@ -101,7 +101,7 @@ const StarMatch = () => {
         <div className="body">
           <div className="left">
               {
-                  gameStatus !== "playing"? <PlayAgain onClick={resetGame} gameStatus={gameStatus} /> : <StarsDisplay stars={stars} />
+                  gameStatus !== "playing"? <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} /> : <StarsDisplay stars={stars} />
               }
           </div>
           <div className="right">
@@ -130,7 +130,11 @@ function App() {
 
 export default App;
 
+const StarMatch = () => {
+    const [gameId, setGameId] = useState(1);
 
+    return <Game key={gameId} startNewGame={() => setGameId(gameId + 1)}/>
+}
 // copied from the  starting code
 // Color Theme
 const colors = {
