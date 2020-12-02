@@ -1,11 +1,19 @@
 /*copied from the starting code*/
+html {
+  background-color: snow;
+}
+
 .game {
   max-width: 500px;
   margin: 0 auto;
+  padding: 150px;
+  background-color: snow;
+
 }
 
 .body {
   display: flex;
+  background-color: white;
 }
 
 .help {

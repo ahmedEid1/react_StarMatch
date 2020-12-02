@@ -36,7 +36,7 @@ const useGameState = () => {
     const [stars, setStars] = useState(utils.random(1, 9));
     const [candidateNumbers, setCandidateNumbers] = useState([]);
     const [availableNumbers, setAvailableNumbers] = useState(utils.range(1, 9));
-    const [secondsLeft, setSecondsLeft] = useState(10);
+    const [secondsLeft, setSecondsLeft] = useState(15);
 
     useEffect(() => {
         if (secondsLeft > 0 && availableNumbers.length > 0) {
@@ -77,7 +77,7 @@ const Game = (props) => {
     //     setStars(utils.random(1, 9));
     //     setAvailableNumbers(utils.range(1, 9));
     //     setCandidateNumbers([]);
-    //     setSecondsLeft(10)
+    //     setSecondsLeft(15)
     // }
 
     const numberStatus = (number) => {
