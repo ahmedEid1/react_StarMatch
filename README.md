@@ -1,6 +1,11 @@
 # star matching Game
 <p>choose number or collection of numbers that match the number of stars on the screen in 15 seconds</p>
 <hr>
+
+## [live site](https://ahmedeid1.github.io/react_StarMatch/)
+
+---
+
 ## screens from the game
     - <img src="media/1.PNG">
     - <img src="media/2.PNG">
