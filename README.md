@@ -9,11 +9,11 @@
 ## screens from the game
 
 
-    - <img src="media/1.PNG">
-    - <img src="media/2.PNG">
-    - <img src="media/3.PNG">
-    - <img src="media/4.PNG">
-    - <img src="media/5.PNG">
+- <img src="media/1.PNG">
+- <img src="media/2.PNG">
+- <img src="media/3.PNG">
+- <img src="media/4.PNG">
+- <img src="media/5.PNG">
 
 ## running the game
 ### `npm start`
